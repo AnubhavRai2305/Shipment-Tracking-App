@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackIt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top navigation bar -->
+<header class="navbar">
+    <div class="container">
+        <div class="logo-area">
+            <span class="logo-icon">📦</span>
+            <h2 class="logo-text">TrackIt</h2>
+        </div>
+
+        <nav>
+            <!-- Using buttons instead of links since JS handles navigation -->
+            <button id="home-btn" class="nav-link">Home</button>
+            <button id="login-nav-btn" class="btn-primary">Sign In</button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Home / tracking page -->
+    <section id="home-page" class="fade-in">
+        <div class="card hero-card">
+            <h1>Track your package</h1>
+            <p class="subtitle">Enter your receipt number for real-time updates.</p>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="track-input"
+                    placeholder="e.g. TRK100"
+                >
+                <button id="go-btn" class="btn-search">Track</button>
+            </div>
+
+            <!-- Hidden by default, shown only on error -->
+            <p id="error-text" class="error-msg">Tracking ID not found.</p>
+        </div>
+
+        <!-- Recent orders table -->
+        <div class="card table-card">
+            <h3>Recent Activity</h3>
+
+            <table id="orders-table">
+                <tbody id="table-body">
+                    <tr>
+                        <td colspan="2" class="empty-state">
+                            Please sign in to view your order history.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Login page -->
+    <section id="login-page" class="hidden fade-in">
+        <div class="card login-card">
+            <div class="login-header">
+                <h1>Welcome Back</h1>
+                <p>Access your dashboard</p>
+            </div>
+
+            <div class="input-group">
+                <label>Username</label>
+                <input
+                    type="text"
+                    id="user-field"
+                    placeholder="admin"
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="pass-field"
+                    placeholder="1234"
+                >
+            </div>
+
+            <div class="login-actions">
+                <button id="do-login-btn" class="btn-block">
+                    Secure Login
+                </button>
+
+                <button id="signup-btn" class="btn-outline">
+                    Create Account
+                </button>
+
+                <!-- This just sends you back to home, handled in JS -->
+                <button id="cancel-btn" class="btn-link">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking result page -->
+    <section id="result-page" class="hidden fade-in">
+        <button id="back-home-btn" class="btn-back">
+            ← Back to Search
+        </button>
+
+        <div class="card result-card">
+            <div class="result-header">
+                <div>
+                    <h2 id="res-id">TRK...</h2>
+                    <p id="res-item" class="res-subtitle">Item Name</p>
+                </div>
+
+                <div
+                    id="res-status-badge"
+                    class="status-badge"
+                >
+                    Status
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline-wrapper">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-steps">
+                    <div class="step active">
+                        <div class="circle">✓</div>
+                        <span>Ordered</span>
+                    </div>
+
+                    <div class="step" id="step-shipped">
+                        <div class="circle">2</div>
+                        <span>Shipped</span>
+                    </div>
+
+                    <div class="step" id="step-delivered">
+                        <div class="circle">3</div>
+                        <span>Delivered</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extra info -->
+            <div class="info-grid">
+                <div class="info-box">
+                    <span class="label"><strong>Estimated Arrival :</strong></span>
+                    <strong id="res-eta">--</strong>
+                </div>
+
+                <div class="info-box">
+                    <span class="label"><strong>Latest Update :</strong></span>
+                    <strong id="updates-list">--</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
