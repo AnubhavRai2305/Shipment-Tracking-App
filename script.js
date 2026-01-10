@@ -1,5 +1,4 @@
-/*  
-   Mock Database  
+/* Mock Database  
    Just hardcoded data for demo purposes  
 */
 var packages = {
@@ -17,11 +16,17 @@ var packages = {
     }
 };
 
+/* Mock User Database 
+   Stores username: password pairs
+*/
+var users = {
+    "admin": "1234"
+};
+
 // Simple auth flag 
 var loggedIn = false;
 
-/*  
-   Navigation helper  
+/* Navigation helper  
    Hides all sections and shows the requested one  
 */
 function navigateTo(pageId) {
@@ -35,8 +40,7 @@ function navigateTo(pageId) {
     document.getElementById("error-text").style.display = "none";
 }
 
-/*  
-   View Order Logic  
+/* View Order Logic  
    Manually updates result page + timeline  
 */
 window.viewOrder = function(id) {
@@ -78,7 +82,8 @@ document.getElementById("do-login-btn").onclick = function() {
     var user = document.getElementById("user-field").value;
     var pass = document.getElementById("pass-field").value;
 
-    if (user === "admin" && pass === "1234") {
+    // Checks against the 'users' object instead of hardcoded strings
+    if (users[user] && users[user] === pass) {
         loggedIn = true;
         document.getElementById("login-nav-btn").innerText = "Log Out";
 
@@ -119,7 +124,7 @@ document.getElementById("do-login-btn").onclick = function() {
 
         navigateTo("home-page");
     } else {
-        alert("Try: admin / 1234");
+        alert("Invalid username or password. Try: admin / 1234");
     }
 };
 
@@ -163,6 +168,20 @@ document.getElementById("back-home-btn").onclick = function() {
 document.getElementById("cancel-btn").onclick = function() {
     navigateTo("home-page");
 };
+
+/* Signup Logic */
 document.getElementById("signup-btn").onclick = function() {
-    alert("Registration coming soon!");
+    var user = document.getElementById("user-field").value;
+    var pass = document.getElementById("pass-field").value;
+
+    if (user && pass) {
+        if (users[user]) {
+            alert("User already exists! Please click Secure Login.");
+        } else {
+            users[user] = pass;
+            alert("Account created! You can now Login.");
+        }
+    } else {
+        alert("Please enter a username and password to create an account.");
+    }
 };
