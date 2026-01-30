@@ -1,24 +1,17 @@
-/* Mock Database  
-   Just hardcoded data for demo purposes  
+/* Mock Backend Logic
 */
-var packages = {
-    "TRK100": {
-        item: "Wireless Headphones",
-        status: "In-Transit",
-        eta: "Today, 5:00 PM",
-        info: "Arrived at local facility"
-    },
-    "TRK200": {
-        item: "Gaming Mouse",
-        status: "Delivered",
-        eta: "Jan 05, 2026",
-        info: "Left at front porch"
-    }
-};
+var packages = {}; 
 
-/* Mock User Database 
-   Stores username: password pairs
-*/
+// This fetches the JSON file when the page loads
+fetch('packages.json')
+    .then(response => response.json()) 
+    .then(data => {
+        packages = data; 
+        console.log("Database loaded:", packages); 
+    })
+    .catch(error => console.error("Error loading mock backend:", error));
+
+
 var users = {
     "admin": "1234"
 };
