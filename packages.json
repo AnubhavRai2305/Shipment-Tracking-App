@@ -1,0 +1,14 @@
+{
+    "TRK100": {
+        "item": "Wireless Headphones",
+        "status": "In-Transit",
+        "eta": "Today, 5:00 PM",
+        "info": "Arrived at local facility"
+    },
+    "TRK200": {
+        "item": "Gaming Mouse",
+        "status": "Delivered",
+        "eta": "Jan 05, 2026",
+        "info": "Left at front porch"
+    }
+}
